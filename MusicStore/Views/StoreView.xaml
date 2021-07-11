@@ -1,0 +1,325 @@
+﻿<UserControl x:Class="MusicStore.Views.StoreView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MusicStore.Views"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Name="View">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/> 
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Margin="0" Grid.Column="0" DockPanel.Dock="Left" Background="Plum" >
+            <Button Command="{Binding RecordCommand}" Margin="5">Record</Button>
+            <Button Command="{Binding UserCommand}" Margin="5">User</Button>
+            <Button Command="{Binding CollectiveCommand}" Margin="5">Collective</Button>
+            <Button Command="{Binding GenreCommand}" Margin="5">Genre</Button>
+            <Button Command="{Binding PublisherCommand}" Margin="5">Publisher</Button>
+            <Button Command="{Binding MyRoomCommand}" Margin="5">My Room</Button>
+            <Button Command="{Binding SearchCommand}" Margin="5">Search</Button>
+            <Button Command="{Binding StatisticCommand}" Margin="5">Statistic</Button>
+
+
+        </StackPanel> 
+        <DockPanel Grid.Column="1" Visibility="{Binding GenreVisibility}">
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="30" DockPanel.Dock="Top">Genres</Label>
+
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Width="300" VerticalAlignment="Center">
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter name of genre" Text="{Binding GenreName}"/>
+                <UniformGrid Columns="1" Rows="1">
+                    <Button  Command="{Binding SaveGenreCommand}" Margin="5">Save</Button>
+                </UniformGrid>
+            </StackPanel>
+
+            <DataGrid ItemsSource="{Binding Genres}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="250" Header="Name" Binding="{Binding Name}"/>
+                    <!--<DataGridTemplateColumn Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" CommandParameter="{Binding .}" Command="{Binding DataContext.EditCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" CommandParameter="{Binding .}" Command="{Binding DataContext.DeleteGenreCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <DockPanel Grid.Column="1" Visibility="{Binding CollectiveVisibility}">
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="30" DockPanel.Dock="Top">Collectives</Label>
+
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Width="300" VerticalAlignment="Center">
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter name of collective" Text="{Binding CollectiveName}"/>
+                <UniformGrid Columns="1" Rows="1">
+                    <Button  Command="{Binding SaveCollectiveCommand}" Margin="5">Save</Button>
+                </UniformGrid>
+            </StackPanel>
+
+            <DataGrid ItemsSource="{Binding Collectives}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="250" Header="Name" Binding="{Binding Name}"/>
+                    <!--<DataGridTemplateColumn Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" CommandParameter="{Binding .}" Command="{Binding DataContext.EditCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" CommandParameter="{Binding .}" Command="{Binding DataContext.DeleteCollectiveCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel> 
+        <DockPanel Grid.Column="1" Visibility="{Binding PublisherVisibility}">
+
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="30" DockPanel.Dock="Top">Publishers</Label>            
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Width="300" VerticalAlignment="Center">
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter name of publisher" Text="{Binding PublisherName}"/>
+                <UniformGrid Columns="1" Rows="1">
+                    <Button  Command="{Binding SavePublisherCommand}" Margin="5">Save</Button>
+                </UniformGrid>
+            </StackPanel>
+
+            <DataGrid ItemsSource="{Binding Publishers}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="250" Header="Name" Binding="{Binding Name}"/>
+                    <!--<DataGridTemplateColumn Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" CommandParameter="{Binding .}" Command="{Binding DataContext.EditCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" CommandParameter="{Binding .}" Command="{Binding DataContext.DeletePublisherCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>  
+        <DockPanel Grid.Column="1" Visibility="{Binding RecordVisibility}">
+
+                                                                                  
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="30" DockPanel.Dock="Top">Records</Label>
+            <UniformGrid Columns="3" Rows="3" DockPanel.Dock="Bottom" HorizontalAlignment="Center" >
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter name of record" Text="{Binding RecordName}"/>
+                <DockPanel>
+                    <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Music quantity</Label>
+                    <xctk:IntegerUpDown FontSize="15" Margin="5"   Text="{Binding Quantity}"/>
+                </DockPanel>
+
+                <DockPanel>
+                    <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Year publishing</Label>
+                    <xctk:IntegerUpDown FontSize="15" Margin="5"   Text="{Binding Year}"/>
+                </DockPanel>
+
+                <DockPanel>
+                    <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Cost Price</Label>
+                    <xctk:IntegerUpDown FontSize="15" Margin="5"  Text="{Binding CostPrice}"/>
+                </DockPanel>
+
+                <DockPanel>
+                    <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Price Sale</Label>
+                    <xctk:IntegerUpDown FontSize="15" Margin="5"  Text="{Binding PriceSale}"/>
+
+                </DockPanel>
+
+
+                <xctk:WatermarkComboBox ItemsSource="{Binding Collectives}" FontSize="15" Margin="5" Watermark="Select Collectives" SelectedItem="{Binding RecordCollectiv}"/>
+                <xctk:WatermarkComboBox ItemsSource="{Binding Publishers}" FontSize="15" Margin="5" Watermark="Select Publishers" SelectedItem="{Binding RecordPublisher}"/>
+                <xctk:WatermarkComboBox ItemsSource="{Binding Genres}" FontSize="15" Margin="5" Watermark="Select Genres" SelectedItem="{Binding RecordGenre}"/>
+                <UniformGrid Columns="1" Rows="1">
+                    <Button  Command="{Binding SaveRecordCommand}" Margin="5">Save</Button>
+                </UniformGrid>
+            </UniformGrid>
+
+            <DataGrid ItemsSource="{Binding Records}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="YearPublishing" Binding="{Binding YearPublishing}"/>
+                    <DataGridTextColumn Header="MusicQuantity" Binding="{Binding MusicQuantity}"/>
+                    <DataGridTextColumn Header="CostPrice" Binding="{Binding CostPrice}"/>
+                    <DataGridTextColumn Header="PriceSale" Binding="{Binding PriceSale}"/>
+                    <DataGridTextColumn Header="Genre" Binding="{Binding Genre.Name}"/>
+                    <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher.Name}"/>
+                    <DataGridTextColumn Header="Collective" Binding="{Binding Collective.Name}"/>
+
+ 
+
+                    <!--<DataGridTemplateColumn Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" CommandParameter="{Binding .}" Command="{Binding DataContext.EditCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" CommandParameter="{Binding .}" Command="{Binding DataContext.DeleteRecordCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Buy">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Buy" CommandParameter="{Binding .}" Command="{Binding DataContext.BuyBookCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel> 
+        <DockPanel Grid.Column="1" Visibility="{Binding UserVisibility}">
+
+
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="30" DockPanel.Dock="Top">Users</Label>
+            <UniformGrid Columns="3" Rows="2" DockPanel.Dock="Bottom" HorizontalAlignment="Center" >
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter name of user" Text="{Binding FullName}"/>
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter Login of user" Text="{Binding Login}"/>
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter Password of user" Text="{Binding Password}"/>
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter RepeatPassword of user" Text="{Binding RepeatPassword}"/>
+                
+                <UniformGrid Columns="1" Rows="1">
+                    <Button  Command="{Binding SaveUserCommand}" Margin="5">Save</Button>
+                </UniformGrid>
+            </UniformGrid>
+
+            <DataGrid ItemsSource="{Binding Users}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding FullName}"/>
+                    <DataGridTextColumn Header="Login" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Password" Binding="{Binding Password}"/> 
+
+
+
+                    <!--<DataGridTemplateColumn Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" CommandParameter="{Binding .}" Command="{Binding DataContext.EditCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" CommandParameter="{Binding .}" Command="{Binding DataContext.DeleteUserCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel> 
+        <DockPanel Grid.Column="1" Visibility="{Binding MyRoomVisibility}">
+
+
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="30" DockPanel.Dock="Top">My Room</Label>
+            <DataGrid ItemsSource="{Binding BuyRecords}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Record.Name}"/>
+                    <DataGridTextColumn Header="YearPublishing" Binding="{Binding Record.YearPublishing}"/> 
+                    <DataGridTextColumn Header="Cost" Binding="{Binding Record.PriceSale}"/> 
+
+
+
+                    <!--<DataGridTemplateColumn Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" CommandParameter="{Binding .}" Command="{Binding DataContext.EditCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" CommandParameter="{Binding .}" Command="{Binding DataContext.DeleteMyRoomCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn> 
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel> 
+        <DockPanel Grid.Column="1" Visibility="{Binding SearchVisibility}">
+
+
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="30" DockPanel.Dock="Top">Search</Label>
+            <UniformGrid Columns="3" Rows="1" DockPanel.Dock="Bottom" HorizontalAlignment="Center" >
+                <xctk:WatermarkTextBox FontSize="15" Margin="5" Watermark="Enter name of search" Text="{Binding SearchName}"/>
+                <xctk:WatermarkComboBox SelectedIndex="{Binding SearchIndex}" ItemsSource="{Binding Serching}" VerticalContentAlignment="Center" Watermark="Search by"  DockPanel.Dock="Left"></xctk:WatermarkComboBox>
+                      
+
+                     <UniformGrid Columns="1" Rows="1">
+                    <Button  Command="{Binding SearchRecordCommand}" Margin="5">Search</Button>
+                </UniformGrid>
+            </UniformGrid>
+
+            <DataGrid ItemsSource="{Binding SearchRecords}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="YearPublishing" Binding="{Binding YearPublishing}"/>
+                    <DataGridTextColumn Header="MusicQuantity" Binding="{Binding MusicQuantity}"/>
+                    <DataGridTextColumn Header="CostPrice" Binding="{Binding CostPrice}"/>
+                    <DataGridTextColumn Header="PriceSale" Binding="{Binding PriceSale}"/>
+                    <DataGridTextColumn Header="Genre" Binding="{Binding Genre.Name}"/>
+                    <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher.Name}"/>
+                    <DataGridTextColumn Header="Collective" Binding="{Binding Collective.Name}"/>
+ 
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" CommandParameter="{Binding .}" Command="{Binding DataContext.DeleteRecordCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Buy">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Buy" CommandParameter="{Binding .}" Command="{Binding DataContext.BuyBookCommand, ElementName=View}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+
+        <DockPanel Grid.Column="1" Visibility="{Binding StatisticVisibility}">
+
+
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="30" DockPanel.Dock="Top">Statistic Visibility</Label>  
+            <Label Background="Plum" HorizontalContentAlignment="Center" FontSize="10" DockPanel.Dock="Top">Click for contet for sorting</Label>
+            <DataGrid ItemsSource="{Binding Records}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="YearPublishing" Binding="{Binding YearPublishing}"/>
+                    <DataGridTextColumn Header="MusicQuantity" Binding="{Binding MusicQuantity}"/>
+                    <DataGridTextColumn Header="CostPrice" Binding="{Binding CostPrice}"/>
+                    <DataGridTextColumn Header="PriceSale" Binding="{Binding PriceSale}"/>
+                    <DataGridTextColumn Header="Genre" Binding="{Binding Genre.Name}"/>
+                    <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher.Name}"/>
+                    <DataGridTextColumn Header="Collective" Binding="{Binding Collective.Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+    </Grid>
+</UserControl>

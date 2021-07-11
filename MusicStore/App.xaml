@@ -1,0 +1,32 @@
+﻿<Application x:Class="MusicStore.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MusicStore"
+             xmlns:views="clr-namespace:MusicStore.Views"
+             xmlns:viewModels="clr-namespace:MusicStore.ViewModels"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModels:SignInViewModel}">
+                <views:SignInViews/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:SignUpViewModel}">
+                <views:SignUpView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:StoreViewModel}">
+                <views:StoreView/>
+            </DataTemplate>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
